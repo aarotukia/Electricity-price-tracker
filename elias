@@ -1,0 +1,114 @@
+[33mcommit cb9a1cd348d9b192c63eb645fbb0db35e00ab2c7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:54:32 2023 +0300
+
+    Update App.js
+
+[33mcommit 441352147a6a08de390dccd146b67f7b3097976c[m
+Merge: 2e18500 77e5011
+Author: aarotukia <58072530+aarotukia@users.noreply.github.com>
+Date:   Sun Apr 16 21:50:31 2023 +0300
+
+    Merge pull request #7 from aarotukia/test
+    
+    overwrited text
+
+[33mcommit 77e5011db4203fc49d4d0fd41bb055692212d759[m[33m ([m[1;31morigin/test[m[33m, [m[1;32mtest[m[33m)[m
+Merge: cd4e7a0 415caca
+Author: aarotukia <tukiaaro@gmail.com>
+Date:   Sun Apr 16 21:49:38 2023 +0300
+
+    Merge branch 'test' of https://github.com/aarotukia/Electricity-price-tracker into test
+
+[33mcommit cd4e7a00d008939f1e6923d7000ed89185efca18[m
+Author: aarotukia <tukiaaro@gmail.com>
+Date:   Sun Apr 16 21:46:57 2023 +0300
+
+    conflict
+
+[33mcommit 415caca857312a9bb03abb1d957e27869148dd28[m
+Author: Elias Westerling <elias.westerling@gmail.com>
+Date:   Sun Apr 16 21:46:11 2023 +0300
+
+    overwrited text
+
+[33mcommit 2e18500e1637ee1573a29b13e7df3c4e1057103f[m
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:33:18 2023 +0300
+
+    Update App.js
+
+[33mcommit a577d46212042a45483a14744bac6e8ff84c1779[m
+Author: aarotukia <tukiaaro@gmail.com>
+Date:   Sun Apr 16 21:30:33 2023 +0300
+
+    creating intentional merge conflict
+
+[33mcommit 04b0594a7171b897a5b38ca0eb1a4d8b718a6510[m
+Author: aarotukia <tukiaaro@gmail.com>
+Date:   Sun Apr 16 21:27:35 2023 +0300
+
+    UPDATE APP.JS
+
+[33mcommit 4a5bf150ce0e2475db1efb0d679c4e509ceea246[m
+Merge: 9c557c0 ff7af2e
+Author: Tube21 <95663440+Tube21@users.noreply.github.com>
+Date:   Sun Apr 16 21:26:29 2023 +0300
+
+    Merge pull request #2 from aarotukia/Tuomas
+    
+    Updated README.md with text: 'Tuomas'
+
+[33mcommit 9c557c05ad70f2869e2a41e7ef6bbe8bb4b977b6[m
+Merge: 8a91c37 d3da765
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:24:59 2023 +0300
+
+    Merge pull request #5 from aarotukia/Selim
+    
+    Selim
+
+[33mcommit d3da765933cd8daefa6bfd4844608c494e3e8898[m
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:24:25 2023 +0300
+
+    Create Teksti Info
+
+[33mcommit fc2c61f9fc1e3f351ad68a4eb18e8b34e6469d0a[m
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:23:55 2023 +0300
+
+    Delete ball.py
+
+[33mcommit 8a91c374236bc092bf0b40def2ade25163b7c53e[m
+Merge: 10b33ba 2e0086d
+Author: Eliaswesterling <95692095+Eliaswesterling@users.noreply.github.com>
+Date:   Sun Apr 16 21:21:34 2023 +0300
+
+    Merge pull request #4 from aarotukia/Elias
+    
+    elias teksti
+
+[33mcommit 2e0086dbe9affc08e19ffe985f492f1dd620854c[m[33m ([m[1;31morigin/Elias[m[33m, [m[1;32mElias[m[33m)[m
+Author: Elias Westerling <elias.westerling@gmail.com>
+Date:   Sun Apr 16 21:19:12 2023 +0300
+
+    elias teksti
+
+[33mcommit ff7af2e9e63179748404f78ab75113f8d0317b3b[m[33m ([m[1;31morigin/Tuomas[m[33m)[m
+Author: Tube21 <thurentuomas@gmail.com>
+Date:   Sun Apr 16 21:17:35 2023 +0300
+
+    Update README.md
+
+[33mcommit 564f918b9a2523b0b0939a621118ffffb7c74648[m
+Author: Sebuster2002 <113916988+Sebuster2002@users.noreply.github.com>
+Date:   Sun Apr 16 21:16:37 2023 +0300
+
+    Add files via upload
+
+[33mcommit 10b33ba51db3c946e2b5d7d1a3a4ac6bf18db1d7[m[33m ([m[1;31morigin/aaro[m[33m)[m
+Author: aarotukia <tukiaaro@gmail.com>
+Date:   Sun Apr 16 20:37:17 2023 +0300
+
+    Initialize project using Create React App

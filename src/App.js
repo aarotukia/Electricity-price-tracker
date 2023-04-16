@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         <br/>
-          Aaro was here
+          Selim was here
         </a>
       </header>
     </div>

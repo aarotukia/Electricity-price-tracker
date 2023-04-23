@@ -71,7 +71,6 @@ async function getPrices(req, res) {
                 formattedEndDate,
             };
         });
-
         // Filter and sort the prices to get the next 24 hours of prices
         const sortedPrices = prices
             .filter((price) => price.startDate > now)
@@ -93,7 +92,6 @@ async function getPrices(req, res) {
         console.error(`Error fetching prices: ${e}`);
     }
 }
-
 // This function formats a date object into a string in the format "dd/mm/yy hh:mm"
   function formatDate(date) {
     const day = date.getDate().toString().padStart(2, '0');
@@ -103,5 +101,5 @@ async function getPrices(req, res) {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `\${day}/\${month}/\${year} \${hours}:\${minutes}`;
   }
-
+  
 exports.getPrices = getPrices;

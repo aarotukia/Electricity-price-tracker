@@ -14,6 +14,9 @@ const passport = require("passport");
 const User = require("./models/user");
 const expressValidator = require("express-validator");
 const indexController = require("./controllers/indexController");
+const fetch = require('node-fetch');
+
+const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
 
 const expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
@@ -109,9 +112,18 @@ router.get("/", (req, res) => {
   res.redirect("/powertrace");
 });
 
+
+
 router.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
+
+/* Fetch electricity price function  */
+async function fetchLatestPriceData() {
+  const response = await fetch(LATEST_PRICES_ENDPOINT);
+
+  return response.json();
+}
 
 
 router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
@@ -125,6 +137,8 @@ router.get("/contact", subscribersController.getSubscriptionPage);
 router.post("/subscribe", subscribersController.saveSubscriber);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
+
+
 router.get("/powertrace", indexController.index);
 
 

@@ -1,28 +1,9 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Electricity Prices Tracking Web App</title>
-</head>
-
-<body>
-    <h1>Current Hour</h1>
-    <p id="price"></p>
-
-    <script>
-        import fetch from 'node-fetch';
-
-        const PRICE_ENDPOINT = 'https://api.porssisahko.net/v1/price.json';
-
-        const dateAndTimeNow = new Date();
-        const date = dateAndTimeNow.toISOString().split('T')[0];
-        const hour = dateAndTimeNow.getHours();
-
-        const response = await fetch(`${PRICE_ENDPOINT}?date=${date}&hour=${hour}`);
-        const { price } = await response.json();
-
-        console.log(`Hinta nyt on ${price}`);
-    </script>
-</body>
-
+  <head>
+    <title>Latest Price Data</title>
+  </head>
+  <body>
+    <h1>Hinta nyt (<%= now.toISOString() %>): <%= price %> snt / kWh (sis. alv)</h1>
+  </body>
 </html>

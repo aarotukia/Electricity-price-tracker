@@ -11,7 +11,7 @@ async function fetchLatestPriceData() {
 }
 
 function formatChartData(prices) {
-    const labels = prices.map((price) => price.startDate);
+    const labels = prices.map((price) => new Date(price.startDate));
     const data = prices.map((price) => price.price);
   
     return {
@@ -27,23 +27,6 @@ function formatChartData(prices) {
       ],
     };
   };
-
-  exports.index = async (req, res) => {
-    try {
-      const { prices } = await fetchLatestPriceData();
-      const chartData = formatChartData(prices);
-  
-      console.log(chartData); // Log chartData to the console
-  
-      res.render('powertrace/index', { chartData }); // Pass chartData as a variable to index.ejs
-    } catch (e) {
-      console.error(e);
-      res.status(500).send('An error occurred');
-    }
-  };
-  
-
-
 
 // This function formats a date object into a human-readable date/time string
 function formatDateTime(date) {
@@ -74,17 +57,19 @@ function getPriceForDate(date, prices) {
 
 // This is the main export of the module, which is a function that renders the home page
 exports.index = async (req, res) => {
-    const { prices } = await fetchLatestPriceData();
-
     try {
-        const now = new Date();
-        const price = getPriceForDate(now, prices);
-
-        res.render('powertrace/index', { now, price });
+      const { prices } = await fetchLatestPriceData();
+      const chartData = formatChartData(prices);
+      const now = new Date();
+      const price = getPriceForDate(now, prices);
+  
+      res.render('powertrace/index', { chartData, now, price });
     } catch (e) {
-        console.error(`Hinnan haku epäonnistui, syy: ${e}`);
+      console.error(e);
+      res.status(500).send('An error occurred');
     }
-};
+  };
+  
 
 // This function gets the latest prices and formats them for display on the prices page
 async function getPrices(req, res) {

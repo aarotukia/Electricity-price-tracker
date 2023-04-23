@@ -13,7 +13,7 @@ const methodOverride = require("method-override");
 const passport = require("passport");
 const User = require("./models/user");
 const expressValidator = require("express-validator");
-
+const indexController = require("./controllers/indexController");
 
 const expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
@@ -125,8 +125,8 @@ router.get("/contact", subscribersController.getSubscriptionPage);
 router.post("/subscribe", subscribersController.saveSubscriber);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
+router.get("/powertrace", indexController.index);
 
-/* router.get("/powertrace", ); */
 
 
 router.post(

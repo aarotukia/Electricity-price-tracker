@@ -1,13 +1,13 @@
 <style>
   a{
-    font-family: 'Concert One', cursive;
+      font-family: 'Concert One', cursive
   }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(128, 0, 128, 0.643); background-color: rgba(128, 0, 128, 0.643); border-radius: 10px;">
   <div class="container-fluid justify-content-between">
     <a class="navbar-brand" style="color: white; font-family: 'Concert One', cursive;" href="/powertrace/">Powertrace app</a>
-    <div class="navbar-nav mx-auto">
+    <div class="navbar-nav ms-auto">
       <% if (loggedIn) { %>
         Logged in as <a href="<%=`/users/${currentUser._id}`%>" class="nav-link text-white border-right pr-2" style="border-color: white;">
           <%= currentUser.fullName %></a>

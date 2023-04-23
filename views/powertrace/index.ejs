@@ -1,35 +1,82 @@
-<h2>Users Table</h2>
-<table class="table">
- <thead>
- <tr>
- <th>Name</th>
- <th>Email</th>
- <th>Zip Code</th>
- <th>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone Number</th>
- </tr>
- </thead>
- <tbody>
- <% users.forEach(user => { %>
- <tr>
-    <td>
-        <a href="<%= `/users/${user._id}` %>">
-        <%= user.fullName %>
-        </a>
-       </td>
- <td><%= user.email %></td>
- <td><%= user.zipCode %></td>
- <td><%= user.phonenumber %></td>
- <td>
-    <a href="<%=`/users/${user._id}/edit` %>">
-    Edit
-   </a>
-   </td>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Prices Tracking Web App</title>
+</head>
+<body>
+    <h1>Current Hour</h1>
+    <p id="price"></p>
+    <p id="priceText"></p>
 
-   <td>
-    <a href="<%= `users/${user._id}/delete?_method=DELETE` %>"onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
-   </td>
+    <h1>Next Hour</h1>
+    <p id="priceNextTitle"></p>
+    <p id="priceNext"></p>
+    <p id="priceNextText"></p>
 
- </tr>
- <% }); %>
- </tbody>
-</table>
+    <script>
+        const numberOfDecimals = 2;
+        let nextHourIsShown = true;
+        let loadedThisHour = false;
+        let currentHour;
+
+        async function download() {
+            const targetUrl = "/JustNow?isHtmlRequest=true";
+            const response = await fetch(targetUrl);
+
+            if (response.ok) {
+                loadedThisHour = true;
+                const price = await response.json();
+
+                if (price.PriceWithTax) {
+                    if (numberOfDecimals > 0) {
+                        document.getElementById('price').innerHTML = (price.PriceWithTax * 100).toFixed(numberOfDecimals);
+                    } else {
+                        document.getElementById('price').innerHTML = Math.round(price.PriceWithTax * 100);
+                    }
+                    document.getElementById('priceText').innerHTML = "snt/kWh";   }
+
+                if (nextHourIsShown) {
+                    document.getElementById('nextHour').style.visibility = "visible";
+                    downloadNextHour();
+                } else {
+                    document.getElementById('nextHour').remove();     }
+            } else {
+                loadedThisHour = false;
+                const errormessage = await response.text();
+                document.getElementById("price").innerHTML = errormessage;
+            }  }
+        async function downloadNextHour() {
+            const targetUrl = "/JustNow?lookForwardHours=1&isHtmlRequest=true";
+            const response = await fetch(targetUrl);
+
+            if (response.ok) {
+                const price = await response.json();
+
+                if (price.PriceWithTax) {
+                    document.getElementById('priceNextTitle').innerHTML = "Next Hour:";
+                    if (numberOfDecimals > 0) {
+                        document.getElementById('priceNext').innerHTML = (price.PriceWithTax * 100).toFixed(numberOfDecimals);
+                    } else {
+                        document.getElementById('priceNext').innerHTML = Math.round(price.PriceWithTax * 100);
+                       }
+                    document.getElementById('priceNextText').innerHTML = "&nbsp;snt/kWh";
+                }
+            } else {
+                const errormessage = await response.text();
+                document.getElementById("priceNext").innerHTML = errormessage;
+            }  }
+
+        setInterval(function () {
+            const d = new Date();
+            const hour = d.getHours();
+            if (hour !== currentHour) {
+                loadedThisHour = false;
+                currentHour = hour;
+            }
+            if (!loadedThisHour) {
+                download();
+            }
+        }, 45000);
+    </script>
+</body>
+</html>

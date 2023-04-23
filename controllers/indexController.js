@@ -11,15 +11,6 @@ async function fetchLatestPriceData() {
     return response.json();
 }
 
-function formatDateTime(date) {
-    return date.toLocaleString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        day: '2-digit',
-        month: '2-digit',
-        year: '2-digit',
-    }).replace(',', '   ');
-}
 
 function getPriceForDate(date, prices) {
     const matchingPriceEntry = prices.find(

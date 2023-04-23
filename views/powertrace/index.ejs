@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Latest Price Data</title>
-  </head>
-  <body>
-    <h1>Current Electricity Price:  <br></h1>
-      <h2> <%= price %> snt / kWh</h2>
-      <h4><a href="/prices">See a list of prices</a></h4>
-  </body>
+
+<head>
+  <title>Latest Price Data</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One">
+
+  <style>
+    h1 {
+      font-family: 'Concert One', cursive;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Current Electricity Price: <br></h1>
+  <h2>
+    <%= price %> snt / kWh
+  </h2>
+  <h4><a href="/prices">See a list of prices</a></h4>
+</body>
+
 </html>

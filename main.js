@@ -106,7 +106,7 @@ router.use(express.static(__dirname + "public"));
 
 // Adding a route for the root path
 router.get("/", (req, res) => {
-  res.redirect("/users");
+  res.redirect("/powertrace");
 });
 
 router.use(methodOverride("_method", {

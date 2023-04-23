@@ -1,84 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Electricity Prices Tracking Web App</title>
 </head>
+
 <body>
     <h1>Current Hour</h1>
     <p id="price"></p>
-    <p id="priceText"></p>
 
-    <h1>Next Hour</h1>
-    <p id="priceNextTitle"></p>
-    <p id="priceNext"></p>
-    <p id="priceNextText"></p>
     <script>
-const numberOfDecimals = 2;
-let nextHourIsShown = true;
-let loadedThisHour = false;
-let currentHour;
+        import fetch from 'node-fetch';
 
-const fetch = require("node-fetch");
+        const PRICE_ENDPOINT = 'https://api.porssisahko.net/v1/price.json';
 
-async function download() {
-  const targetUrl = "/JustNow?isHtmlRequest=true";
-  const response = await fetch(targetUrl);
+        const dateAndTimeNow = new Date();
+        const date = dateAndTimeNow.toISOString().split('T')[0];
+        const hour = dateAndTimeNow.getHours();
 
-  if (response.ok) {
-    loadedThisHour = true;
-    const price = await response.json();
+        const response = await fetch(`${PRICE_ENDPOINT}?date=${date}&hour=${hour}`);
+        const { price } = await response.json();
 
-    if (price.PriceWithTax) {
-      if (numberOfDecimals > 0) {
-        console.log((price.PriceWithTax * 100).toFixed(numberOfDecimals));
-      } else {
-        console.log(Math.round(price.PriceWithTax * 100));
-      }
-      console.log("snt/kWh");
-    }
-    if (nextHourIsShown) {
-      console.log("Next Hour:");
-      downloadNextHour();
-    } else {
-      console.log("Next hour not shown");
-    }
-  } else {
-    loadedThisHour = false;
-    const errorMessage = await response.text();
-    console.log(errorMessage);
-  }
-}
-async function downloadNextHour() {
-  const targetUrl = "/JustNow?lookForwardHours=1&isHtmlRequest=true";
-  const response = await fetch(targetUrl);
-
-  if (response.ok) {
-    const price = await response.json();
-
-    if (price.PriceWithTax) {
-      if (numberOfDecimals > 0) {
-        console.log((price.PriceWithTax * 100).toFixed(numberOfDecimals));
-      } else {
-        console.log(Math.round(price.PriceWithTax * 100));
-      }
-      console.log("snt/kWh");
-    }
-  } else {
-    const errorMessage = await response.text();
-    console.log(errorMessage);
-  }
-}
-setInterval(async function () {
-  const d = new Date();
-  const hour = d.getHours();
-  if (hour !== currentHour) {
-    loadedThisHour = false;
-    currentHour = hour;
-  }
-  if (!loadedThisHour) {
-    await download();
-  }
-}, 45000);
+        console.log(`Hinta nyt on ${price}`);
     </script>
 </body>
+
 </html>

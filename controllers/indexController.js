@@ -1,5 +1,6 @@
 const { Console } = require('console');
 const fetch = require('node-fetch');
+const Chart = require('chart.js');
 
 const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
 
@@ -8,6 +9,41 @@ async function fetchLatestPriceData() {
     const response = await fetch(LATEST_PRICES_ENDPOINT);
     return response.json();
 }
+
+function formatChartData(prices) {
+    const labels = prices.map((price) => price.startDate);
+    const data = prices.map((price) => price.price);
+  
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'Prices',
+          data,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
+
+  exports.index = async (req, res) => {
+    try {
+      const { prices } = await fetchLatestPriceData();
+      const chartData = formatChartData(prices);
+  
+      console.log(chartData); // Log chartData to the console
+  
+      res.render('powertrace/index', { chartData }); // Pass chartData as a variable to index.ejs
+    } catch (e) {
+      console.error(e);
+      res.status(500).send('An error occurred');
+    }
+  };
+  
+
+
 
 // This function formats a date object into a human-readable date/time string
 function formatDateTime(date) {

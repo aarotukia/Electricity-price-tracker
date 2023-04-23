@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Latest Price Data</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One">
-
-  <style>
-    h1 {
-      font-family: 'Concert One', cursive;
-    }
-
-    a {
-  color: #990099;
-}
-
-  </style>
-</head>
-
-<body>
-  <h1>Current Electricity Price: <br></h1>
-  <h2>
-    <B><%= price %></B> snt / kWh
-  </h2>
-  <h4><a href="/prices">See a list of prices</a></h4>
-</body>
-
+  <head>
+    <title>Latest Price Data</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One">
+    <style>
+      h1 {
+        font-family: 'Concert One', cursive;
+      }
+      a {
+        color: #990099;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Current Electricity Price: <br></h1>
+    <h2>
+      <b><%= price %></b> snt / kWh
+    </h2>
+    <h4><a href="/prices">See a list of prices</a></h4>
+    <div>
+        <% if (typeof chartData !== 'undefined') { %>
+          <canvas id="myChart"></canvas>
+          <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const chartData = <%- JSON.stringify(chartData) %>;
+            const chartConfig = {
+              type: 'line',
+              data: chartData,
+            };
+            const myChart = new Chart(ctx, chartConfig);
+          </script>
+        <% } else { %>
+          <p>No chart data currently available.</p>
+        <% } %>
+      </div>
+  </body>
 </html>

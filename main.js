@@ -15,8 +15,9 @@ const User = require("./models/user");
 const expressValidator = require("express-validator");
 const indexController = require("./controllers/indexController");
 const fetch = require('node-fetch');
-
 const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
+const { index, getPrices } = require('./controllers/indexController');
+const { renderChart } = require('./controllers/chartController');
 
 const expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
@@ -140,6 +141,10 @@ router.get("/users/new", usersController.new);
 
 router.get("/prices", indexController.getPrices);
 router.get("/powertrace", indexController.index);
+
+router.get('/', index);
+router.get('/prices', getPrices);
+router.get('/chart', renderChart);
 
 
 

@@ -21,7 +21,7 @@ const expressSession = require("express-session"),
 
 // Importing the required module for Mongoose and defining the database URL and name
 const mongoose = require("mongoose");
-const dbURL = "mongodb://127.0.0.1:27017/powertrace";
+const dbURL = "mongodb+srv://tukiaaro:permamankeli@powertrace.3gljae1.mongodb.net/powertrace";
 const db = mongoose.connection;
 
 // Connecting to the MongoDB database using Mongoose

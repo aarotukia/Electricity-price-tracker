@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.0",
-    "chart.js": "^4.2.1",
+    "chart.js": "^3.5.1",
+    "chartjs-node-canvas": "^4.1.6",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.9",

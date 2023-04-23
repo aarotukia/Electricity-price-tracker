@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electricity Prices</title>
+  </head>
+  <body>
+    <h1>Electricity Prices</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Price        &nbsp;&nbsp;&nbsp;&nbsp;</th>
+          <th>Start Date   &nbsp;&nbsp;</th>
+    
+        </tr>
+      </thead>
+      <tbody>
+        <% prices.forEach(price => { %>
+          <tr>
+            <td><%= price.price %> snt / kWh &nbsp;&nbsp;</td>
+            <td><%= price.startDate %></td>
+    
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

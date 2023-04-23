@@ -138,7 +138,7 @@ router.post("/subscribe", subscribersController.saveSubscriber);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
 
-
+router.get("/prices", indexController.getPrices);
 router.get("/powertrace", indexController.index);
 
 

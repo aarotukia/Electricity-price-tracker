@@ -13,7 +13,10 @@ const methodOverride = require("method-override");
 const passport = require("passport");
 const User = require("./models/user");
 const expressValidator = require("express-validator");
+const indexController = require("./controllers/indexController");
+const fetch = require('node-fetch');
 
+const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
 
 const expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
@@ -106,12 +109,21 @@ router.use(express.static(__dirname + "public"));
 
 // Adding a route for the root path
 router.get("/", (req, res) => {
-  res.redirect("/users");
+  res.redirect("/powertrace");
 });
+
+
 
 router.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
+
+/* Fetch electricity price function  */
+async function fetchLatestPriceData() {
+  const response = await fetch(LATEST_PRICES_ENDPOINT);
+
+  return response.json();
+}
 
 
 router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
@@ -126,7 +138,9 @@ router.post("/subscribe", subscribersController.saveSubscriber);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
 
-/* router.get("/powertrace", ); */
+
+router.get("/powertrace", indexController.index);
+
 
 
 router.post(

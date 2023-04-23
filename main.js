@@ -1,13 +1,12 @@
 // Importing the required modules and controllers
 const express = require("express"),
-app = express()
+  app = express()
 router = express.Router();
 const homeController = require("./controllers/homeController");
 const layouts = require("express-ejs-layouts");
 const path = require("path");
 const errorController = require("./controllers/errorController");
 const Subscriber = require("./models/subscriber");
-const Recipe = require("./models/recipe");
 const subscribersController = require("./controllers/subscribersController");
 const usersController = require("./controllers/usersController");
 const methodOverride = require("method-override");
@@ -22,7 +21,7 @@ const expressSession = require("express-session"),
 
 // Importing the required module for Mongoose and defining the database URL and name
 const mongoose = require("mongoose");
-const dbURL = "mongodb://127.0.0.1:27017/recipe_db";
+const dbURL = "mongodb://127.0.0.1:27017/powertrace";
 const db = mongoose.connection;
 
 // Connecting to the MongoDB database using Mongoose

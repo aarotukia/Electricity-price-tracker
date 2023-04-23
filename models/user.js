@@ -4,6 +4,7 @@ const mongoose = require("mongoose"),
   Subscriber = require("./subscriber"),
   bcrypt = require("bcrypt"),
   passportLocalMongoose = require("passport-local-mongoose"),
+
   userSchema = new Schema(
     {
       name: {
@@ -44,7 +45,7 @@ const mongoose = require("mongoose"),
       timestamps: true
     }
   );
-
+    
 userSchema.virtual("fullName").get(function() {
   return `${this.name.first} ${this.name.last}`;
 });
@@ -66,6 +67,8 @@ userSchema.pre("save", function(next) {
         next(error);
       });
   });
+
+  
 
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "email"

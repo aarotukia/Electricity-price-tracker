@@ -12,71 +12,73 @@
     <p id="priceNextTitle"></p>
     <p id="priceNext"></p>
     <p id="priceNextText"></p>
-
     <script>
-        const numberOfDecimals = 2;
-        let nextHourIsShown = true;
-        let loadedThisHour = false;
-        let currentHour;
+const numberOfDecimals = 2;
+let nextHourIsShown = true;
+let loadedThisHour = false;
+let currentHour;
 
-        async function download() {
-            const targetUrl = "/JustNow?isHtmlRequest=true";
-            const response = await fetch(targetUrl);
+const fetch = require("node-fetch");
 
-            if (response.ok) {
-                loadedThisHour = true;
-                const price = await response.json();
+async function download() {
+  const targetUrl = "/JustNow?isHtmlRequest=true";
+  const response = await fetch(targetUrl);
 
-                if (price.PriceWithTax) {
-                    if (numberOfDecimals > 0) {
-                        document.getElementById('price').innerHTML = (price.PriceWithTax * 100).toFixed(numberOfDecimals);
-                    } else {
-                        document.getElementById('price').innerHTML = Math.round(price.PriceWithTax * 100);
-                    }
-                    document.getElementById('priceText').innerHTML = "snt/kWh";   }
+  if (response.ok) {
+    loadedThisHour = true;
+    const price = await response.json();
 
-                if (nextHourIsShown) {
-                    document.getElementById('nextHour').style.visibility = "visible";
-                    downloadNextHour();
-                } else {
-                    document.getElementById('nextHour').remove();     }
-            } else {
-                loadedThisHour = false;
-                const errormessage = await response.text();
-                document.getElementById("price").innerHTML = errormessage;
-            }  }
-        async function downloadNextHour() {
-            const targetUrl = "/JustNow?lookForwardHours=1&isHtmlRequest=true";
-            const response = await fetch(targetUrl);
+    if (price.PriceWithTax) {
+      if (numberOfDecimals > 0) {
+        console.log((price.PriceWithTax * 100).toFixed(numberOfDecimals));
+      } else {
+        console.log(Math.round(price.PriceWithTax * 100));
+      }
+      console.log("snt/kWh");
+    }
+    if (nextHourIsShown) {
+      console.log("Next Hour:");
+      downloadNextHour();
+    } else {
+      console.log("Next hour not shown");
+    }
+  } else {
+    loadedThisHour = false;
+    const errorMessage = await response.text();
+    console.log(errorMessage);
+  }
+}
+async function downloadNextHour() {
+  const targetUrl = "/JustNow?lookForwardHours=1&isHtmlRequest=true";
+  const response = await fetch(targetUrl);
 
-            if (response.ok) {
-                const price = await response.json();
+  if (response.ok) {
+    const price = await response.json();
 
-                if (price.PriceWithTax) {
-                    document.getElementById('priceNextTitle').innerHTML = "Next Hour:";
-                    if (numberOfDecimals > 0) {
-                        document.getElementById('priceNext').innerHTML = (price.PriceWithTax * 100).toFixed(numberOfDecimals);
-                    } else {
-                        document.getElementById('priceNext').innerHTML = Math.round(price.PriceWithTax * 100);
-                       }
-                    document.getElementById('priceNextText').innerHTML = "&nbsp;snt/kWh";
-                }
-            } else {
-                const errormessage = await response.text();
-                document.getElementById("priceNext").innerHTML = errormessage;
-            }  }
-
-        setInterval(function () {
-            const d = new Date();
-            const hour = d.getHours();
-            if (hour !== currentHour) {
-                loadedThisHour = false;
-                currentHour = hour;
-            }
-            if (!loadedThisHour) {
-                download();
-            }
-        }, 45000);
+    if (price.PriceWithTax) {
+      if (numberOfDecimals > 0) {
+        console.log((price.PriceWithTax * 100).toFixed(numberOfDecimals));
+      } else {
+        console.log(Math.round(price.PriceWithTax * 100));
+      }
+      console.log("snt/kWh");
+    }
+  } else {
+    const errorMessage = await response.text();
+    console.log(errorMessage);
+  }
+}
+setInterval(async function () {
+  const d = new Date();
+  const hour = d.getHours();
+  if (hour !== currentHour) {
+    loadedThisHour = false;
+    currentHour = hour;
+  }
+  if (!loadedThisHour) {
+    await download();
+  }
+}, 45000);
     </script>
 </body>
 </html>

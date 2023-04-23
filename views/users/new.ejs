@@ -1,30 +1,76 @@
-<div class="data-form">
-    <form action="/users/create" method="POST">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One">
+
+<style>
+
+h2 {
+  font-family: 'Concert One', cursive;
+}
+    .form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-layer {
+  width: 45%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-layer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+</style>
+
+<div class="form-container">
+  <div class="form-layer">
     <h2>Create a new user:</h2>
-    <label for="inputFirstName">First Name</label>
-    <input type="text" name="first" id="inputFirstName"
-   ➥ placeholder="First" autofocus>
-   <label for="inputLastName">Last Name</label>
-    <input type="text" name="last" id="inputLastName"
-   ➥ placeholder="Last">
-   <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword"
-   ➥ placeholder="Password" required>
-   <label for="inputEmail">Email address</label>
-    <input type="email" name="email" id="inputEmail"    
-   ➥ placeholder="Email address" required>
-   <br>  <br>
+    <form action="/users/create" method="POST">
+      <label for="inputFirstName">First Name</label>
+      <input type="text" name="first" id="inputFirstName" placeholder="First" autofocus>
+      
+      <label for="inputLastName">Last Name</label>
+      <input type="text" name="last" id="inputLastName" placeholder="Last">
+      
+      <label for="inputPassword">Password</label>
+      <input type="password" name="password" id="inputPassword" placeholder="Password" required>
+      
+      <label for="inputEmail">Email address</label>
+      <input type="email" name="email" id="inputEmail" placeholder="Email address" required>
+      
+      <label for="phonenumber">Phone number</label>
+      <input type="phonenumber" name="phonenumber" id="phonenumber" placeholder="Phone Number">
+      
+      <label for="zipCode">Zip Code</label>
+      <input type="text" name="zipCode" id="zipCode" pattern="\d*" placeholder="zipCode" required>
+      
+      <button type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
 
-   <label for="phonenumber">Phone number</label>
-   <input type="phonenumber" name="phonenumber" id="phonenumber"
-   
-  ➥ placeholder="Phone Number">
-
-
-   <label for="zipCode">Zip Code</label>
-    <input type="text" name="zipCode" id="zipCode" pattern="\d*"
-    
-   ➥ placeholder="zipCode" required>
-   <button type="submit">Sign in</button>
-   </form>
-   </div>

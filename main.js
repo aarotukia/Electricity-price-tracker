@@ -135,6 +135,8 @@ router.post("/users/login", usersController.authenticate, usersController.redire
 router.get("/users/logout", usersController.logout, usersController.redirectView);
 router.get("/contact", subscribersController.getSubscriptionPage);
 router.post("/subscribe", subscribersController.saveSubscriber);
+router.get("/users/new", usersController.new);
+router.post("/users/create", usersController.create, usersController.redirectView);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
 

@@ -9,16 +9,16 @@ async function fetchLatestPriceData() {
 
     return response.json();
 }
+
 function formatDateTime(date) {
     return date.toLocaleString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
         day: '2-digit',
         month: '2-digit',
         year: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-    }).replace(',', '');
+    }).replace(',', '   ');
 }
-
 
 function getPriceForDate(date, prices) {
     const matchingPriceEntry = prices.find(
@@ -35,9 +35,6 @@ function getPriceForDate(date, prices) {
     return `${formattedDate}: ${price}`;
 }
 
-
-
-
 exports.index = async (req, res) => {
     const { prices } = await fetchLatestPriceData();
 
@@ -50,16 +47,26 @@ exports.index = async (req, res) => {
         console.error(`Hinnan haku epäonnistui, syy: \${e}`);
     }
 };
+
 async function getPrices(req, res) {
     try {
         const response = await fetch(LATEST_PRICES_ENDPOINT);
         const data = await response.json();
-        const prices = data.prices;
+        const prices = data.prices.map((priceEntry) => {
+            const formattedStartDate = formatDateTime(new Date(priceEntry.startDate));
+            const formattedEndDate = formatDateTime(new Date(priceEntry.endDate));
+            return {
+                ...priceEntry,
+                startDate: formattedStartDate,
+                endDate: formattedEndDate,
+            };
+        });
 
         res.render('powertrace/prices', { prices });
     } catch (e) {
-        console.error(`Error fetching prices: \${e}`);
+        console.error(`Error fetching prices: ${e}`);
     }
 }
+
 
 exports.getPrices = getPrices;

@@ -101,5 +101,4 @@ async function getPrices(req, res) {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `\${day}/\${month}/\${year} \${hours}:\${minutes}`;
   }
-  
 exports.getPrices = getPrices;

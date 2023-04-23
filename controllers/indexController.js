@@ -1,18 +1,50 @@
 const fetch = require('node-fetch');
 
-const PRICE_ENDPOINT = 'https://api.porssisahko.net/v1/price.json';
+const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
+
+async function fetchLatestPriceData() {
+  const response = await fetch(LATEST_PRICES_ENDPOINT);
+
+  return response.json();
+}
+
+function formatDateTime(date) {
+    return date.toLocaleString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    }).replace(',', '');
+  }
+
+  
+function getPriceForDate(date, prices) {
+    const matchingPriceEntry = prices.find(
+      (price) => new Date(price.startDate) <= date && new Date(price.endDate) > date
+    );
+  
+    if (!matchingPriceEntry) {
+      throw 'Price for the requested date is missing';
+    }
+  
+    const formattedDate = formatDateTime(date);
+    const price = matchingPriceEntry.price;
+  
+    return `${formattedDate}: ${price}`;
+  }
+  
+  
 
 exports.index = async (req, res) => {
-  const dateAndTimeNow = new Date();
-  const date = dateAndTimeNow.toISOString().split('T')[0];
-  const hour = dateAndTimeNow.getHours();
+  const { prices } = await fetchLatestPriceData();
 
   try {
-    const response = await fetch(`${PRICE_ENDPOINT}?date=${date}&hour=${hour}`);
-    const { price } = await response.json();
-    res.render('index', { price });
-  } catch (error) {
-    console.error(error);
-    res.render('index', { price: 'Error fetching price' });
+    const now = new Date();
+    const price = getPriceForDate(now, prices);
+
+    res.render('powertrace/index', { now, price });
+  } catch (e) {
+    console.error(`Hinnan haku epäonnistui, syy: \${e}`);
   }
 };

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(128, 0, 128, 0.643);">
   <div class="container-fluid justify-content-between">
-    <a class="navbar-brand" style="color: white" href="/users/">Powertrace app</a>
+    <a class="navbar-brand" style="color: white" href="/powertrace/">Powertrace app</a>
     <div class="navbar-nav mx-auto">
       <% if (loggedIn) { %>
         Logged in as <a href="<%=`/users/${currentUser._id}`%>" class="nav-link text-white border-right pr-2" style="border-color: white;">
@@ -9,8 +9,8 @@
       <%} else {%>
         <a href="/users/login" class="nav-link text-white border-right pr-2" style="border-color: white;">Log In</a>
       <% } %>  
-      <a href="/users/edit" class="nav-link text-white border-right pr-2" style="border-color: white;">Users</a>
-      <a href="/users/edit" class="nav-link text-white border-right pr-2" style="border-color: white;">Pricetracker</a>
+      <a href="/users" class="nav-link text-white border-right pr-2" style="border-color: white;">Users</a>
+      <a href="/prices" class="nav-link text-white border-right pr-2" style="border-color: white;">Pricetracker</a>
       <a href="/users/edit" class="nav-link text-white border-right pr-2" style="border-color: white;">History</a>
       <a href="/users/edit" class="nav-link text-white" style="border-color: white;">About us</a>
     </div>

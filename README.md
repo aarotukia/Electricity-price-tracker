@@ -1,6 +1,32 @@
-# Getting Started with Create React App
+# Electricity price tracking App | PowerTrace
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+Way of Working 
+
+ 
+
+1. We assign roles and responsibilities for each team member. 
+
+2. Each member shall have their own development branch outside of the main branch. 
+
+3. Team members commit early and often. We follow best practices for merging and branching. Aaro is responsible for responding to pull requests. 
+
+4. Communicate regularly to keep up to date with changes to the project. 
+
+5. We continuously review progress and adjust the plan as needed. 
+
+6. Pull request after checking for problems and merging. 
+
+7. Aaro Tukia will respond to pull requests 
+
+8. Write descriptive commit messages to ensure quality version control  
+
+9. Commits are made as often as possible to ensure structural working environment 
+
+
 
 ## Available Scripts
 
@@ -68,5 +94,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-Tuomas

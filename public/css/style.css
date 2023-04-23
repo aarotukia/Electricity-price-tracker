@@ -1,0 +1,27 @@
+#nav {
+    background-color: rgb(151, 95, 247); /* sets the background color of the navigation div to dark gray */
+    color: #fff; /* sets the text color to white */
+    padding: 10px; /* adds some padding around the text */
+  }
+  
+  #footer {
+    background-color: rgb(151, 95, 247);/* sets the background color of the footer div to dark gray */
+    color: #fff; /* sets the text color to white */
+    padding: 25px; /* adds some padding around the text */
+    position: fixed; /* positions the footer div at the bottom of the page */
+    bottom: 25;
+    width: 100%; /* sets the width to 100% so it stretches across the entire page */
+  }
+  #h1 {
+    color: red;
+    text-align: center;
+  }
+
+  #contact {
+    margin: auto;
+  width: 50%;
+  border: 3px solid  rgb(151, 95, 247);
+  padding: 10px;
+  text-align: center;
+}
+  

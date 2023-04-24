@@ -128,3 +128,6 @@ function formatDate(date) {
 }
 
 exports.getPrices = getPrices;
+
+
+

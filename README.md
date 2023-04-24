@@ -12,9 +12,9 @@ Run npm start to start the app.
 
 Usage:
 
-When you open the app in your browser, you'll see the graph of electricity prices for the next 24 hours, as well as a table below it with the prices sorted in ascending order. The graph is interactive, so you can hover over it to see the exact price for a specific hour.
+When you open the app in your browser, you'll see the graph of electricity prices for the next 24 hours, as well as a table with the prices sorted in ascending order. The graph is interactive, so you can hover over it to see the exact price for a specific hour.
 
-The prices are fetched from https://api.porssisahko.net/v1/latest-prices.json. You can click on the "Refresh" button at the top of the page to update the prices.
+The prices are fetched from https://api.porssisahko.net/v1/latest-prices.json. 
 
 Credits:
 

@@ -113,7 +113,6 @@ router.get("/", (req, res) => {
 });
 
 
-
 router.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
@@ -124,7 +123,6 @@ async function fetchLatestPriceData() {
 
   return response.json();
 }
-
 
 router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
   console.log(req.data);
@@ -158,7 +156,7 @@ router.get("/users/:id", usersController.show, usersController.showView);
 router.get("/users/:id/edit", usersController.edit);
 router.put("/users/:id/update", usersController.update, usersController.redirectView);
 router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
-
+router.get("/about", indexController.about);
 
 
 app.use("/", router);

@@ -298,6 +298,32 @@ html {
   .glyphicon-envelope:before {
     content: "\2709";
   }
+  /* Styles for the chart container */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+/* Styles for the chart canvas */
+.chart-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styles for the chart legend */
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
   .glyphicon-pencil:before {
     content: "\270f";
   }

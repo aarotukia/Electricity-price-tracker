@@ -1,3 +1,51 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One">
+
+<style>
+  h2 {
+    font-family: 'Concert One', cursive;
+  }
+
+  .form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-layer {
+    width: 45%;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-top: 10px;
+  }
+
+  input {
+    margin-bottom: 20px;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .form-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .form-layer {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
 <div class="data-form">
     <form method="POST" action="<%=`/users/${user._id}/update?_method=PUT`%>">
    <h2>Edit user:</h2>

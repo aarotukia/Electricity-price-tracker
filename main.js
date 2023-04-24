@@ -125,6 +125,11 @@ router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, n
   console.log(req.data);
   res.render("subscribers", { subscribers: req.data })
 });
+
+router.get('/about', (req, res) => {
+  res.render('/about');
+});
+
 router.get("/users/login", usersController.login);
 router.post("/users/login", usersController.authenticate, usersController.redirectView);
 router.get("/users/logout", usersController.logout, usersController.redirectView);

@@ -2,19 +2,22 @@
 
 This is a simple web application that displays the current electricity prices for the next 24 hours. The prices are presented both in a graph and in a sorted list.
 
-Installation
+Installation: 
+
 To run this application locally, you need to have Node.js and npm installed on your computer. Once you have those, follow these steps:
 
 Clone this repository to your local machine using git clone.
 Navigate to the project directory and run npm install to install the necessary dependencies.
 Run npm start to start the app.
 
-Usage
+Usage:
+
 When you open the app in your browser, you'll see the graph of electricity prices for the next 24 hours, as well as a table below it with the prices sorted in ascending order. The graph is interactive, so you can hover over it to see the exact price for a specific hour.
 
 The prices are fetched from https://api.porssisahko.net/v1/latest-prices.json. You can click on the "Refresh" button at the top of the page to update the prices.
 
-Credits
+Credits:
+
 This app was created by GROUP 4 and is licensed under the MIT License.
 
 The electricity prices data is sourced from https://api.porssisahko.net/v1/latest-prices.json.

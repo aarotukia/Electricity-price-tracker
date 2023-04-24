@@ -1,4 +1,4 @@
-// Importing the required modules and controllers
+/* Importing the required modules and controllers */
 const express = require("express"),
   app = express()
 router = express.Router();
@@ -22,71 +22,69 @@ const expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
   connectFlash = require("connect-flash");
 
-// Importing the required module for Mongoose and defining the database URL and name
+//* Importing the required module for Mongoose and defining the database URL and name */
 const mongoose = require("mongoose");
 const dbURL = "mongodb+srv://tukiaaro:permamankeli@powertrace.3gljae1.mongodb.net/powertrace";
 const db = mongoose.connection;
 
-// Connecting to the MongoDB database using Mongoose
+/* Connecting to the MongoDB database using Mongoose */
 mongoose.connect(dbURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  connectTimeoutMS: 10000,
-  socketTimeoutMS: 45000
+useNewUrlParser: true,
+useUnifiedTopology: true,
+connectTimeoutMS: 10000,
+socketTimeoutMS: 45000
 }).then(() => console.log("Successfully connected to MongoDB!"))
-  .catch((error) => console.error(error));
+.catch((error) => console.error(error));
 
-// Defining a schema for the contacts collection
+/* Defining a schema for the contacts collection */
 const contactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  note: String
+name: String,
+email: String,
+note: String
 });
 
-// Creating a model for the contacts collection using the schema
+/* Creating a model for the contacts collection using the schema */
 const Contact = mongoose.model("Contact", contactSchema);
 
-
-// Defining the port number and creating a new Express application
+/* Defining the port number and creating a new Express application */
 const port = 3000;
 const recipe = require("./models/recipe");
 
-// Setting the view engine to ejs and the port number to 3000
+/* Setting the view engine to ejs and the port number to 3000 */
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 3000);
 
 router.use(
-  express.urlencoded({
-    extended: false
-  })
+express.urlencoded({
+extended: false
+})
 );
 router.use(express.json());
 router.use(expressValidator());
 
-// Using the layouts module and the error controller's logErrors function
+/* Using the layouts module and the error controller's logErrors function */
 router.use(layouts);
 router.use(errorController.logErrors);
 
-// Setting the MIME type of .css files to "text/css"
+/* Setting the MIME type of .css files to "text/css" */
 router.use(express.static("public", {
-  setHeaders: function (res, path) {
-    if (path.endsWith(".css")) {
-      res.setHeader("Content-Type", "text/css");
-    }
-  },
+setHeaders: function (res, path) {
+if (path.endsWith(".css")) {
+res.setHeader("Content-Type", "text/css");
+}
+},
 }));
 
 router.use(cookieParser("secret_passcode"));
 router.use(expressSession({
-  secret: "secret_passcode",
-  cookie: {
-    maxAge: 4000000
-  },
-  resave: false,
-  saveUninitialized: false
+secret: "secret_passcode",
+cookie: {
+maxAge: 4000000
+},
+resave: false,
+saveUninitialized: false
 }));
 router.use(connectFlash());
-
 
 router.use(passport.initialize());
 router.use(passport.session());
@@ -96,13 +94,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 router.use((req, res, next) => {
-  res.locals.loggedIn = req.isAuthenticated();
-  res.locals.currentUser = req.user;
-  res.locals.flashMessages = req.flash();
+res.locals.loggedIn = req.isAuthenticated();
+res.locals.currentUser = req.user;
+res.locals.flashMessages = req.flash();
 
-  next();
+next();
 });
-
 
 // Serving static files from the "public" directory
 router.use(express.static(__dirname + "public"));
@@ -111,7 +108,6 @@ router.use(express.static(__dirname + "public"));
 router.get("/", (req, res) => {
   res.redirect("/powertrace");
 });
-
 
 router.use(methodOverride("_method", {
   methods: ["POST", "GET"]

@@ -2,19 +2,15 @@
 const express = require("express"),
   app = express()
 router = express.Router();
-const homeController = require("./controllers/homeController");
 const layouts = require("express-ejs-layouts");
 const path = require("path");
 const errorController = require("./controllers/errorController");
-const Subscriber = require("./models/subscriber");
-const subscribersController = require("./controllers/subscribersController");
 const usersController = require("./controllers/usersController");
 const methodOverride = require("method-override");
 const passport = require("passport");
 const User = require("./models/user");
 const expressValidator = require("express-validator");
 const indexController = require("./controllers/indexController");
-const fetch = require('node-fetch');
 
 const LATEST_PRICES_ENDPOINT = 'https://api.porssisahko.net/v1/latest-prices.json';
 
@@ -36,19 +32,8 @@ socketTimeoutMS: 45000
 }).then(() => console.log("Successfully connected to MongoDB!"))
 .catch((error) => console.error(error));
 
-/* Defining a schema for the contacts collection */
-const contactSchema = new mongoose.Schema({
-name: String,
-email: String,
-note: String
-});
-
-/* Creating a model for the contacts collection using the schema */
-const Contact = mongoose.model("Contact", contactSchema);
-
 /* Defining the port number and creating a new Express application */
 const port = 3000;
-const recipe = require("./models/recipe");
 
 /* Setting the view engine to ejs and the port number to 3000 */
 app.set("view engine", "ejs");
@@ -97,7 +82,6 @@ router.use((req, res, next) => {
 res.locals.loggedIn = req.isAuthenticated();
 res.locals.currentUser = req.user;
 res.locals.flashMessages = req.flash();
-
 next();
 });
 
@@ -113,28 +97,10 @@ router.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
 
-/* Fetch electricity price function  */
-async function fetchLatestPriceData() {
-  const response = await fetch(LATEST_PRICES_ENDPOINT);
-
-  return response.json();
-}
-
-
-router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
-  console.log(req.data);
-  res.render("subscribers", { subscribers: req.data })
-});
-
-router.get('/about', (req, res) => {
-  res.render('/about');
-});
 
 router.get("/users/login", usersController.login);
 router.post("/users/login", usersController.authenticate, usersController.redirectView);
 router.get("/users/logout", usersController.logout, usersController.redirectView);
-router.get("/contact", subscribersController.getSubscriptionPage);
-router.post("/subscribe", subscribersController.saveSubscriber);
 router.get("/users/new", usersController.new);
 router.post("/users/create", usersController.create, usersController.redirectView);
 router.get("/users", usersController.index, usersController.indexView);
@@ -142,6 +108,7 @@ router.get("/users/new", usersController.new);
 
 router.get("/prices", indexController.getPrices);
 router.get("/powertrace", indexController.index);
+router.get("/powertrace/about", indexController.about);
 
 
 
@@ -152,14 +119,11 @@ router.post(
   usersController.redirectView
 );
 
-
 router.post("/users/create", usersController.create, usersController.redirectView);
 router.get("/users/:id", usersController.show, usersController.showView);
 router.get("/users/:id/edit", usersController.edit);
 router.put("/users/:id/update", usersController.update, usersController.redirectView);
 router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
-
-
 
 app.use("/", router);
 // Starting the server and listening on the specified port number

@@ -1,7 +1,6 @@
 "use strict";
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
-  Subscriber = require("./subscriber"),
   bcrypt = require("bcrypt"),
   passportLocalMongoose = require("passport-local-mongoose"),
 

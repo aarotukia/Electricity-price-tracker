@@ -70,6 +70,10 @@ exports.index = async (req, res) => {
     }
   };
   
+  exports.about = (req, res) => {
+    res.render('powertrace/about', {});
+};
+
 
 // This function gets the latest prices and formats them for display on the prices page
 async function getPrices(req, res) {

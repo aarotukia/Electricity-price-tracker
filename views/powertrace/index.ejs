@@ -41,13 +41,13 @@
   <body>
     <h1>Current Electricity Price: <br></h1>
     <h2>
-      <b><%= price %></b> snt / kWh
+      <b><%= price %></b> cent / kWh
     </h2>
     <h4><a href="/prices">See a list of prices</a></h4>
     <div class="chart-container">
       <% if (typeof chartData !== 'undefined') { %>
         <canvas id="myChart" class="chart-canvas"></canvas>
-        <div class="chart-legend">Electricity price graph (24h)</div>
+        <div class="chart-legend"> <b><h6>Electricity price graph (24h) </h6></b></div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/moment"></script>
         <script>
@@ -55,7 +55,8 @@
           const chartData = <%- JSON.stringify(chartData) %>;
           chartData.datasets[0].backgroundColor = 'rgba(153, 0, 153, 0.2)';
           chartData.datasets[0].borderColor = 'rgba(153, 0, 153, 1)';
-          chartData.labels = chartData.labels.map(label => moment(label, 'YYYY-MM-DD').toDate());
+          chartData.datasets[0].label = 'Price (cent / kWh)';
+          chartData.labels = chartData.labels.map(label => label.slice(11, 16));
           const chartConfig = {
             type: 'line',
             data: chartData,
@@ -63,12 +64,11 @@
               scales: {
                 xAxes: [{
                   type: 'time',
-                  time: {
-                    unit: 'day',
+                  ticks: {
+                    display: true,
                   },
                   scaleLabel: {
-                    display: true,
-                    labelString: 'Date',
+                    display: false,
                   },
                 }],
                 yAxes: [{
@@ -77,7 +77,7 @@
                   },
                   scaleLabel: {
                     display: true,
-                    labelString: 'Price (snt / kWh)',
+                    labelString: 'Price (cent / kWh)',
                   },
                 }],
               },

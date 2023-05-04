@@ -67,7 +67,6 @@ userSchema.pre("save", function(next) {
       });
   });
 
-  
 
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "email"
